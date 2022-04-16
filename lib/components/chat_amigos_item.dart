@@ -6,6 +6,8 @@ class ChatAmigosItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(8),
+      splashColor: Theme.of(context).primaryColor,
       onTap: () {},
       child: SizedBox(
         height: 60,

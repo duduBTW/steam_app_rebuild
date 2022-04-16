@@ -21,31 +21,36 @@ class _LayoutState extends State<Layout> {
 
   @override
   Widget build(BuildContext context) {
+    var celular = MediaQuery.of(context).size.width <= 600;
+
     return Scaffold(
       appBar: widget.getAppBar(paginaAtual),
       body: widget.getBody(paginaAtual),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: paginaAtual,
-        type: BottomNavigationBarType.fixed,
-        onTap: mudarDeAba,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        selectedItemColor: const Color(0xffECEFF4),
-        unselectedItemColor: const Color(0xff757575),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat,
-            ),
-            label: "Chat",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag), label: "Loja"),
-          BottomNavigationBarItem(icon: Icon(Icons.shield), label: "Guard"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.circle), label: "Comunidade"),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Mais"),
-        ],
-      ),
+      bottomNavigationBar: celular
+          ? BottomNavigationBar(
+              currentIndex: paginaAtual,
+              type: BottomNavigationBarType.fixed,
+              onTap: mudarDeAba,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              selectedItemColor: const Color(0xffECEFF4),
+              unselectedItemColor: const Color(0xff757575),
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.chat,
+                  ),
+                  label: "Chat",
+                ),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.shopping_bag), label: "Loja"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.shield), label: "Guard"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.circle), label: "Comunidade"),
+                BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Mais"),
+              ],
+            )
+          : null,
     );
   }
 }

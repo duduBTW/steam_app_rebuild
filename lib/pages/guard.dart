@@ -62,42 +62,47 @@ class _GuardState extends State<Guard> {
   @override
   Widget build(BuildContext context) {
     var porcentagem = _inicio / 30;
+    double tamanhoMinimo = min(MediaQuery.of(context).size.width - 120,
+        MediaQuery.of(context).size.height - 400);
+    double tamanhoMaximo = max(tamanhoMinimo, 300);
 
     return Center(
-      child: CircularPercentIndicator(
-        radius: MediaQuery.of(context).size.width - 120,
-        lineWidth: 14.0,
-        animation: true,
-        animateFromLastPercent: true,
-        percent: porcentagem,
-        startAngle: 360,
-        center: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              codigo.toUpperCase(),
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 46.0,
-                  color: Color(0xffECEFF4)),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(
-              "0:$_inicio",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: const Color(0xffECEFF4).withOpacity(0.3)),
-            ),
-          ],
+      child: SingleChildScrollView(
+        child: CircularPercentIndicator(
+          radius: tamanhoMaximo,
+          lineWidth: 14.0,
+          animation: true,
+          animateFromLastPercent: true,
+          percent: porcentagem,
+          startAngle: 360,
+          center: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                codigo.toUpperCase(),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 46.0,
+                    color: Color(0xffECEFF4)),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                "0:$_inicio",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: const Color(0xffECEFF4).withOpacity(0.3)),
+              ),
+            ],
+          ),
+          footer: const FooterGuard(),
+          circularStrokeCap: CircularStrokeCap.round,
+          progressColor: getCorProgresso(porcentagem),
+          backgroundColor: const Color(0xffECEFF4).withOpacity(0.18),
+          backgroundWidth: 4,
         ),
-        footer: const FooterGuard(),
-        circularStrokeCap: CircularStrokeCap.round,
-        progressColor: getCorProgresso(porcentagem),
-        backgroundColor: const Color(0xffECEFF4).withOpacity(0.18),
-        backgroundWidth: 4,
       ),
     );
   }

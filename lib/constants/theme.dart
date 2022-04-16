@@ -8,7 +8,8 @@ ThemeData getTheme() {
           headline1: TextStyle(
               fontSize: 34,
               color: Color(0xffECEFF4),
-              fontWeight: FontWeight.bold)),
+              fontWeight: FontWeight.bold),
+          headline4: TextStyle(color: Color(0xffECEFF4), fontSize: 16)),
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: TextStyle(color: const Color(0xffECEFF4).withOpacity(0.3)),
         filled: true,
